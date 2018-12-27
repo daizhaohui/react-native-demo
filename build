@@ -1,0 +1,12 @@
+运行命令打包 react-native bundle --platform 平台 --entry-file 启动文件 --bundle-output 打包js输出文件 --assets-dest 资源输出目录 --dev 是否调试。
+eg:
+react-native bundle --platform ios --entry-file index.js --bundle-output ./bundles/index.ios.bundle --dev false
+
+
+
+热更新：
+
+打包bundle结束后，就可以通过CodePush发布更新了。在终端输入
+code-push release <应用名称> <Bundles所在目录> <对应的应用版本> --deploymentName： 更新环境 --description： 更新描述 --mandatory： 是否强制更新 
+eg:
+code-push release react-native-demo-os ./bundles/index.ios.bundle 1.0.1 --deploymentName Production --description "react native demo" --mandatory true
