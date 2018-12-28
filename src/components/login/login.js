@@ -49,7 +49,7 @@ export default class Login extends Component<Props, States> {
     return (
       <View style={Styles.container}>
         <View style={Styles.containerItem}>
-          <Text style={Styles.itemTitle}> 用户名8: </Text>
+          <Text style={Styles.itemTitle}> 用户名: </Text>
           <TextInput
             style={Styles.textInputStyle}
             onChangeText={this.getTextChangeFunc("userName")}
@@ -60,7 +60,7 @@ export default class Login extends Component<Props, States> {
           />
         </View>
         <View style={Styles.containerItem}>
-          <Text style={Styles.itemTitle}> 密码8: </Text>
+          <Text style={Styles.itemTitle}> 密码: </Text>
           <TextInput
             style={Styles.textInputStyle}
             onChangeText={this.getTextChangeFunc("password")}
