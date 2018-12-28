@@ -12,4 +12,9 @@ eg:
 code-push release react-native-demo-os ./bundles/index.ios.bundle 1.0.1 --deploymentName Production --description "react native demo" --mandatory true
 
 //默认为Staging,测试用
-code-push release react-native-demo-os ./bundles/index.ios.bundle 1.0.8  --description "react native demo" --mandatory true
+code-push release react-native-demo-os ./bundles/index.ios.bundle 2.0.2  --description "react native demo" --mandatory true
+
+code-push deployment clear react-native-demo-os Production 
+code-push deployment clear react-native-demo-os Staging 
+
+code-push deployment list react-native-demo-os 
