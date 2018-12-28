@@ -127,7 +127,7 @@ class App extends Component<Props> {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to Here!</Text>
+        <Text style={styles.welcome}>Welcome to Here! Thank you!</Text>
         <TouchableOpacity onPress={this.sync.bind(this)}>
           <Text style={styles.syncButton}>Press for background sync</Text>
         </TouchableOpacity>
