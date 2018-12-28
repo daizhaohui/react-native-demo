@@ -11,5 +11,5 @@ code-push release <应用名称> <Bundles所在目录> <对应的应用版本> -
 eg:
 code-push release react-native-demo-os ./bundles/index.ios.bundle 1.0.1 --deploymentName Production --description "react native demo" --mandatory true
 
-//默认为Staging
+//默认为Staging,测试用
 code-push release react-native-demo-os ./bundles/index.ios.bundle 1.0.8  --description "react native demo" --mandatory true

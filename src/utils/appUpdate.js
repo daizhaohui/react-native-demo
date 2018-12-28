@@ -15,7 +15,6 @@ function sync(mode: Number): void {
   if (Platform.OS !== "ios") {
     return;
   }
-
   if (mode === 1) {
     codePush.sync(); //后台
   } else if (mode === 2) {
