@@ -10,3 +10,6 @@ react-native bundle --platform ios --entry-file index.js --bundle-output ./bundl
 code-push release <应用名称> <Bundles所在目录> <对应的应用版本> --deploymentName： 更新环境 --description： 更新描述 --mandatory： 是否强制更新 
 eg:
 code-push release react-native-demo-os ./bundles/index.ios.bundle 1.0.1 --deploymentName Production --description "react native demo" --mandatory true
+
+//默认为Staging
+code-push release react-native-demo-os ./bundles/index.ios.bundle 1.0.8  --description "react native demo" --mandatory true

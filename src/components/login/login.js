@@ -49,7 +49,7 @@ export default class Login extends Component<Props, States> {
     return (
       <View style={Styles.container}>
         <View style={Styles.containerItem}>
-          <Text style={Styles.itemTitle}> 用户名1: </Text>{" "}
+          <Text style={Styles.itemTitle}> 用户名8: </Text>
           <TextInput
             style={Styles.textInputStyle}
             onChangeText={this.getTextChangeFunc("userName")}
@@ -58,9 +58,9 @@ export default class Login extends Component<Props, States> {
             value={this.state.userName}
             textContentType="name"
           />
-        </View>{" "}
+        </View>
         <View style={Styles.containerItem}>
-          <Text style={Styles.itemTitle}> 密码1: </Text>{" "}
+          <Text style={Styles.itemTitle}> 密码8: </Text>
           <TextInput
             style={Styles.textInputStyle}
             onChangeText={this.getTextChangeFunc("password")}
@@ -69,14 +69,14 @@ export default class Login extends Component<Props, States> {
             value={this.state.password}
             textContentType="password"
           />
-        </View>{" "}
+        </View>
         <View style={Styles.containerButtonItem}>
           <Button
             title="登  录"
             accessibilityLabel="登录"
             onPress={this.loginPress}
-          />{" "}
-        </View>{" "}
+          />
+        </View>
       </View>
     );
   }
