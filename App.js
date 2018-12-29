@@ -106,7 +106,19 @@ class App extends Component<Props> {
   /** Update pops a confirmation dialog, and then immediately reboots the app */
   syncImmediate() {
     CodePush.sync(
-      { installMode: CodePush.InstallMode.IMMEDIATE, updateDialog: true },
+      {
+        installMode: CodePush.InstallMode.IMMEDIATE,
+        updateDialog: {
+          appendReleaseDescription: true,
+          descriptionPrefix: "更新内容:",
+          mandatoryContinueButtonLabel: "更新",
+          mandatoryUpdateMessage: "有新版本了，请您及时更新",
+          optionalInstallButtonLabel: "立即更新",
+          optionalIgnoreButtonLabel: "稍后",
+          optionalUpdateMessage: "有新版本了，是否更新？",
+          title: "提示"
+        }
+      },
       this.codePushStatusDidChange.bind(this),
       this.codePushDownloadDidProgress.bind(this)
     );
@@ -127,7 +139,7 @@ class App extends Component<Props> {
 
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to Here! Thank you!</Text>
+        <Text style={styles.welcome}>Welcome to Here!</Text>
         <TouchableOpacity onPress={this.sync.bind(this)}>
           <Text style={styles.syncButton}>Press for background sync</Text>
         </TouchableOpacity>

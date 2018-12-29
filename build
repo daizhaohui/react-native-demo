@@ -18,3 +18,5 @@ code-push deployment clear react-native-demo-os Production
 code-push deployment clear react-native-demo-os Staging 
 
 code-push deployment list react-native-demo-os 
+
+react-native run-ios --variant=Staging
