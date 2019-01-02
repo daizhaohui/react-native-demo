@@ -3,6 +3,6 @@ import React from "react";
 import renderer from "react-test-renderer";
 
 it("renders", () => {
-  const renderer = renderer.create(<App />).toJSON();
-  expect(renderer).toBeTruthy();
+  const r = renderer.create(<Login />).toJSON();
+  expect(r).toMatchSnapshot();
 });

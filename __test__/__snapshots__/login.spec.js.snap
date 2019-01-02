@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "column",
+      "height": 200,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+       用户名: 
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      maxLength={30}
+      onChangeText={[Function]}
+      placeholder="请输入用户名"
+      style={
+        Object {
+          "borderRadius": 4,
+          "borderWidth": 1,
+          "height": 40,
+          "width": 200,
+        }
+      }
+      textContentType="name"
+      underlineColorAndroid="transparent"
+      value=""
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "center",
+      }
+    }
+  >
+    <Text
+      style={
+        Object {
+          "width": 100,
+        }
+      }
+    >
+       密码: 
+    </Text>
+    <TextInput
+      allowFontScaling={true}
+      maxLength={20}
+      onChangeText={[Function]}
+      placeholder="请输入密码"
+      style={
+        Object {
+          "borderRadius": 4,
+          "borderWidth": 1,
+          "height": 40,
+          "width": 200,
+        }
+      }
+      textContentType="password"
+      underlineColorAndroid="transparent"
+      value=""
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 1,
+      }
+    }
+  >
+    <View
+      accessibilityLabel="登录"
+      accessibilityRole="button"
+      accessibilityStates={Array []}
+      accessible={true}
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
+      style={
+        Object {
+          "opacity": 1,
+        }
+      }
+    >
+      <View
+        style={
+          Array [
+            Object {},
+          ]
+        }
+      >
+        <Text
+          style={
+            Array [
+              Object {
+                "color": "#007AFF",
+                "fontSize": 18,
+                "padding": 8,
+                "textAlign": "center",
+              },
+            ]
+          }
+        >
+          登  录
+        </Text>
+      </View>
+    </View>
+  </View>
+</View>
+`;
