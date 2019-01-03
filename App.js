@@ -18,9 +18,42 @@ import {
 } from "react-native";
 import Login from "./src/components/login";
 import CodePush from "react-native-code-push";
+import { createStackNavigator, createAppContainer } from "react-navigation";
+import MainScreen from "./src/components/main";
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
+  },
+  image: {
+    margin: 30,
+    width: Dimensions.get("window").width - 100,
+    height: (365 * (Dimensions.get("window").width - 100)) / 651
+  },
+  messages: {
+    marginTop: 30,
+    textAlign: "center"
+  },
+  restartToggleButton: {
+    color: "blue",
+    fontSize: 17
+  },
+  syncButton: {
+    color: "green",
+    fontSize: 17
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 20
+  }
+});
 
 type Props = {};
-class App extends Component<Props> {
+class AppEntry extends Component<Props> {
   constructor() {
     super();
     this.state = {
@@ -161,7 +194,7 @@ class App extends Component<Props> {
           <Text style={styles.syncButton}>Press for Update Metadata</Text>
         </TouchableOpacity>
         <Text style={styles.messages}>{this.state.syncMessage || ""}</Text>
-        <Login />
+        <Login navigation={this.props.navigation} />
       </View>
     );
   }
@@ -173,37 +206,20 @@ class App extends Component<Props> {
  * need to be explicitly called. All options of CodePush.sync() are also available in this decorator.
  */
 let codePushOptions = { checkFrequency: CodePush.CheckFrequency.MANUAL };
-App = CodePush(codePushOptions)(App);
+AppEntry = CodePush(codePushOptions)(AppEntry);
 
-export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
+const AppNavigator = createStackNavigator(
+  {
+    AppEntry: {
+      screen: AppEntry
+    },
+    Main: {
+      screen: MainScreen
+    }
   },
-  image: {
-    margin: 30,
-    width: Dimensions.get("window").width - 100,
-    height: (365 * (Dimensions.get("window").width - 100)) / 651
-  },
-  messages: {
-    marginTop: 30,
-    textAlign: "center"
-  },
-  restartToggleButton: {
-    color: "blue",
-    fontSize: 17
-  },
-  syncButton: {
-    color: "green",
-    fontSize: 17
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 20
+  {
+    initialRouteName: "AppEntry"
   }
-});
+);
+
+export default createAppContainer(AppNavigator);

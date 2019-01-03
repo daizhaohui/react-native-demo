@@ -43,6 +43,8 @@ export default class Login extends Component<Props, States> {
       );
       return;
     }
+    let { navigation } = this.props;
+    navigation.navigate("Main");
   };
 
   render() {
