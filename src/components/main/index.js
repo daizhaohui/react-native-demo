@@ -1,30 +1,43 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, View, Button } from "react-native";
 import { createBottomTabNavigator, createAppContainer } from "react-navigation";
+import HomeScreen from "./homeScreen";
+import SettingsScreen from "./settingScreen";
 
-class HomeScreen extends React.Component {
+const TabNavigator = createAppContainer(
+  createBottomTabNavigator(
+    {
+      Home: {
+        screen: HomeScreen,
+        navigationOptions: () => ({})
+      },
+      Settings: {
+        screen: SettingsScreen,
+        navigationOptions: () => ({})
+      }
+    },
+    {
+      tabBarOptions: {
+        labelStyle: {
+          fontSize: 12
+        },
+        tabStyle: {
+          width: 100
+        },
+        style: {
+          backgroundColor: "#fff"
+        }
+      }
+    }
+  )
+);
+
+export default class MainScreen extends React.Component {
+  constructor() {
+    super();
+  }
+
   render() {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Home!</Text>
-      </View>
-    );
+    return <TabNavigator />;
   }
 }
-
-class SettingsScreen extends React.Component {
-  render() {
-    return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Settings!</Text>
-      </View>
-    );
-  }
-}
-
-const TabNavigator = createBottomTabNavigator({
-  Home: HomeScreen,
-  Settings: SettingsScreen
-});
-
-export default createAppContainer(TabNavigator);

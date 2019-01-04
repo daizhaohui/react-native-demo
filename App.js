@@ -14,12 +14,15 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
+  Platform,
+  Button
 } from "react-native";
 import Login from "./src/components/login";
 import CodePush from "react-native-code-push";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import MainScreen from "./src/components/main";
+import DrawerMenu from "./src/components/main/drawerMenu";
 
 const styles = StyleSheet.create({
   container: {
@@ -53,7 +56,22 @@ const styles = StyleSheet.create({
 });
 
 type Props = {};
+
 class AppEntry extends Component<Props> {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: "登录",
+      headerRight: (
+        <Button
+          onPress={() => alert("This is a button!")}
+          title="Info"
+          color="blue"
+        />
+      ),
+      headerLeft: null
+    };
+  };
+
   constructor() {
     super();
     this.state = {
@@ -206,7 +224,10 @@ class AppEntry extends Component<Props> {
  * need to be explicitly called. All options of CodePush.sync() are also available in this decorator.
  */
 let codePushOptions = { checkFrequency: CodePush.CheckFrequency.MANUAL };
-AppEntry = CodePush(codePushOptions)(AppEntry);
+//IOS 实现了热更新
+if (Platform.OS === "ios") {
+  AppEntry = CodePush(codePushOptions)(AppEntry);
+}
 
 const AppNavigator = createStackNavigator(
   {
@@ -215,10 +236,14 @@ const AppNavigator = createStackNavigator(
     },
     Main: {
       screen: MainScreen
+    },
+    Drawer: {
+      screen: DrawerMenu
     }
   },
   {
-    initialRouteName: "AppEntry"
+    initialRouteName: "AppEntry",
+    headerMode: "none"
   }
 );
 
