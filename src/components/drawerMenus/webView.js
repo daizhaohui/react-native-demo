@@ -22,6 +22,15 @@ class RNWebView extends React.Component {
     )
   });
 
+  renderHTML = () => {
+    return (
+      <WebView
+        originWhitelist={["*"]}
+        source={{ html: "<h1>Hello world</h1>" }}
+      />
+    );
+  };
+
   render() {
     return (
       <WebView
