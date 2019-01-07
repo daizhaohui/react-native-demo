@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, Button, DeviceEventEmitter } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import { EVENTS } from "../../consts";
+import { WebView } from "react-native-webview";
 
 class RNWebView extends React.Component {
   constructor() {
@@ -23,9 +24,11 @@ class RNWebView extends React.Component {
 
   render() {
     return (
-      <View>
-        <Text>RNWebView</Text>
-      </View>
+      <WebView
+        source={{ uri: "https://infinite.red/react-native" }}
+        style={{ marginTop: 20 }}
+        onLoadProgress={e => console.log(e.nativeEvent.progress)}
+      />
     );
   }
 }

@@ -138,6 +138,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-webview')
     compile project(':react-native-gesture-handler')
     compile project(':react-native-code-push')
     implementation fileTree(dir: "libs", include: ["*.jar"])
