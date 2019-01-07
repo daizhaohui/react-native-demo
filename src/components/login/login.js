@@ -20,6 +20,20 @@ export default class Login extends Component<Props, States> {
     };
   }
 
+  static navigationOptions = ({ navigation }) => {
+    return {
+      headerTitle: "登录",
+      headerRight: (
+        <Button
+          onPress={() => alert("This is a button!")}
+          title="Info"
+          color="blue"
+        />
+      ),
+      headerLeft: null
+    };
+  };
+
   getTextChangeFunc = name => {
     return text => {
       this.setState({
@@ -49,35 +63,37 @@ export default class Login extends Component<Props, States> {
 
   render() {
     return (
-      <View style={Styles.container}>
-        <View style={Styles.containerItem}>
-          <Text style={Styles.itemTitle}> 用户名: </Text>
-          <TextInput
-            style={Styles.textInputStyle}
-            onChangeText={this.getTextChangeFunc("userName")}
-            maxLength={30}
-            placeholder="请输入用户名"
-            value={this.state.userName}
-            textContentType="name"
-          />
-        </View>
-        <View style={Styles.containerItem}>
-          <Text style={Styles.itemTitle}> 密码: </Text>
-          <TextInput
-            style={Styles.textInputStyle}
-            onChangeText={this.getTextChangeFunc("password")}
-            maxLength={20}
-            placeholder="请输入密码"
-            value={this.state.password}
-            textContentType="password"
-          />
-        </View>
-        <View style={Styles.containerButtonItem}>
-          <Button
-            title="登  录"
-            accessibilityLabel="登录"
-            onPress={this.loginPress}
-          />
+      <View style={Styles.outer}>
+        <View style={Styles.container}>
+          <View style={Styles.containerItem}>
+            <Text style={Styles.itemTitle}> 用户名: </Text>
+            <TextInput
+              style={Styles.textInputStyle}
+              onChangeText={this.getTextChangeFunc("userName")}
+              maxLength={30}
+              placeholder="请输入用户名"
+              value={this.state.userName}
+              textContentType="name"
+            />
+          </View>
+          <View style={Styles.containerItem}>
+            <Text style={Styles.itemTitle}> 密码: </Text>
+            <TextInput
+              style={Styles.textInputStyle}
+              onChangeText={this.getTextChangeFunc("password")}
+              maxLength={20}
+              placeholder="请输入密码"
+              value={this.state.password}
+              textContentType="password"
+            />
+          </View>
+          <View style={Styles.containerButtonItem}>
+            <Button
+              title="登  录"
+              accessibilityLabel="登录"
+              onPress={this.loginPress}
+            />
+          </View>
         </View>
       </View>
     );

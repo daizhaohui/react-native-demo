@@ -8,7 +8,6 @@
 
 import React, { Component } from "react";
 import {
-  AppRegistry,
   Dimensions,
   Image,
   StyleSheet,
@@ -16,13 +15,13 @@ import {
   TouchableOpacity,
   View,
   Platform,
-  Button
+  DeviceEventEmitter
 } from "react-native";
 import Login from "./src/components/login";
 import CodePush from "react-native-code-push";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import MainScreen from "./src/components/main";
-import DrawerMenu from "./src/components/main/drawerMenu";
+import { EVENTS } from "./src/consts";
 
 const styles = StyleSheet.create({
   container: {
@@ -58,20 +57,6 @@ const styles = StyleSheet.create({
 type Props = {};
 
 class AppEntry extends Component<Props> {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      headerTitle: "登录",
-      headerRight: (
-        <Button
-          onPress={() => alert("This is a button!")}
-          title="Info"
-          color="blue"
-        />
-      ),
-      headerLeft: null
-    };
-  };
-
   constructor() {
     super();
     this.state = {
@@ -175,7 +160,18 @@ class AppEntry extends Component<Props> {
     );
   }
 
-  componentDidMount() {}
+  toLogin = () => {
+    let { navigation } = this.props;
+    navigation.navigate("Login");
+  };
+
+  componentDidMount() {
+    DeviceEventEmitter.addListener(EVENTS.LOGOUT, this.toLogin);
+  }
+
+  componentWillMount() {
+    DeviceEventEmitter.removeListener(EVENTS.LOGOUT);
+  }
 
   render() {
     let progressView;
@@ -190,6 +186,9 @@ class AppEntry extends Component<Props> {
 
     return (
       <View style={styles.container}>
+        <TouchableOpacity onPress={this.toLogin}>
+          <Text style={styles.syncButton}>Skip</Text>
+        </TouchableOpacity>
         <Text style={styles.welcome}>Welcome to Here!</Text>
         <TouchableOpacity onPress={this.sync.bind(this)}>
           <Text style={styles.syncButton}>Press for background sync</Text>
@@ -212,7 +211,6 @@ class AppEntry extends Component<Props> {
           <Text style={styles.syncButton}>Press for Update Metadata</Text>
         </TouchableOpacity>
         <Text style={styles.messages}>{this.state.syncMessage || ""}</Text>
-        <Login navigation={this.props.navigation} />
       </View>
     );
   }
@@ -234,11 +232,11 @@ const AppNavigator = createStackNavigator(
     AppEntry: {
       screen: AppEntry
     },
+    Login: {
+      screen: Login
+    },
     Main: {
       screen: MainScreen
-    },
-    Drawer: {
-      screen: DrawerMenu
     }
   },
   {

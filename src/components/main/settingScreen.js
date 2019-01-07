@@ -1,6 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  DeviceEventEmitter
+} from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
+import { EVENTS } from "../../consts";
 
 const styles = StyleSheet.create({
   container: {
@@ -27,6 +34,13 @@ class Settings extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Settings!</Text>
+        <Button
+          onPress={() => {
+            DeviceEventEmitter.emit(EVENTS.LOGOUT);
+          }}
+          title="退出"
+          color="blue"
+        />
       </View>
     );
   }

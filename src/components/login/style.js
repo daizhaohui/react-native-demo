@@ -1,8 +1,12 @@
-import {
-  StyleSheet
-} from "react-native";
+import { StyleSheet } from "react-native";
 
 const Styles = StyleSheet.create({
+  outer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
+  },
   container: {
     height: 200,
     flexDirection: "column",

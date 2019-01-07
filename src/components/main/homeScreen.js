@@ -1,11 +1,13 @@
 import React from "react";
-import { StyleSheet, Button, View, Text, ScrollView } from "react-native";
 import {
-  createDrawerNavigator,
-  createAppContainer,
-  SafeAreaView,
-  DrawerItems
-} from "react-navigation";
+  StyleSheet,
+  Button,
+  View,
+  Text,
+  DeviceEventEmitter
+} from "react-native";
+import { createStackNavigator, createAppContainer } from "react-navigation";
+import { EVENTS } from "../../consts";
 
 const styles = StyleSheet.create({
   container: {
@@ -18,8 +20,24 @@ const styles = StyleSheet.create({
 //this.props.navigation.navigate("Drawer")
 
 class Home extends React.Component {
-  static navigationOptions = ({ navigation }) => ({
-    drawerLabel: ""
+  static navigationOptions = navigation => ({
+    title: "Home",
+    headerLeft: (
+      <Button
+        onPress={() => {
+          DeviceEventEmitter.emit(EVENTS.OPEN_DRAWER_MENUS);
+        }}
+        title="Menus"
+        color="blue"
+      />
+    ),
+    headerRight: (
+      <Button
+        onPress={() => alert("This is a button!")}
+        title="Info"
+        color="blue"
+      />
+    )
   });
 
   render() {
@@ -31,40 +49,14 @@ class Home extends React.Component {
   }
 }
 
-const CustomDrawerContentComponent = props => (
-  <ScrollView>
-    <SafeAreaView
-      style={styles.container}
-      forceInset={{ top: "always", horizontal: "never" }}
-    >
-      <DrawerItems {...props} />
-    </SafeAreaView>
-  </ScrollView>
-);
-
-const MyDrawerNavigator = createDrawerNavigator(
+const MyNavigator = createStackNavigator(
   {
     Home: {
       screen: Home
     }
   },
   {
-    initialRouteName: "Home",
-    contentComponent: CustomDrawerContentComponent,
-    drawerPosition: "left",
-    drawerType: "front",
-    drawerWidth: 200,
-    drawerBackgroundColor: "blue",
-    contentOptions: {
-      activeTintColor: "#e91e63",
-      itemsContainerStyle: {
-        marginVertical: 0
-      },
-      iconContainerStyle: {
-        opacity: 1
-      }
-    }
+    initialRouteName: "Home"
   }
 );
-
-export default createAppContainer(MyDrawerNavigator);
+export default createAppContainer(MyNavigator);

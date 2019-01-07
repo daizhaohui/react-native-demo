@@ -1,74 +1,93 @@
 import React from "react";
-import { StyleSheet, View, Text, ScrollView } from "react-native";
 import {
-  createDrawerNavigator,
-  createAppContainer,
-  DrawerItems,
-  SafeAreaView
-} from "react-navigation";
+  StyleSheet,
+  Text,
+  ScrollView,
+  TouchableOpacity,
+  DeviceEventEmitter,
+  TouchableHighlight,
+  View,
+  Modal
+} from "react-native";
+import { SafeAreaView } from "react-navigation";
+import { EVENTS } from "../../consts";
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
+  menuLink: {
+    color: "#fff"
   }
 });
 
-const CustomDrawerContentComponent = props => (
-  <ScrollView>
-    <SafeAreaView
-      style={styles.container}
-      forceInset={{ top: "always", horizontal: "never" }}
-    >
-      <DrawerItems {...props} />
-    </SafeAreaView>
-  </ScrollView>
-);
-
-class Menu1 extends React.Component {
-  render() {
-    return (
-      <View>
-        <Text>Menu1</Text>
-      </View>
-    );
+export default class DrawerMenu extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      modalVisible: false,
+      currentComponent: null
+    };
   }
-}
 
-class Menu2 extends React.Component {
-  render() {
-    return (
-      <View>
-        <Text>Menu2</Text>
-      </View>
-    );
-  }
-}
-
-const MyDrawerNavigator = createDrawerNavigator(
-  {
-    Menu1: {
-      screen: Menu1
-    },
-    Menu2: {
-      screen: Menu2
-    }
-  },
-  {
-    contentComponent: CustomDrawerContentComponent,
-    drawerPosition: "left",
-    drawerType: "front",
-    drawerWidth: 200,
-    drawerBackgroundColor: "blue",
-    contentOptions: {
-      activeTintColor: "#e91e63",
-      itemsContainerStyle: {
-        marginVertical: 0
-      },
-      iconContainerStyle: {
-        opacity: 1
+  getMenuClick = (navigation, menuItem) => {
+    let _this = this;
+    return () => {
+      if (menuItem.component) {
+        _this.setState({
+          modalVisible: true,
+          currentComponent: menuItem.component
+        });
       }
-    }
-  }
-);
+    };
+  };
 
-export default createAppContainer(MyDrawerNavigator);
+  closeDialog = () => {
+    this.setState({
+      modalVisible: false
+    });
+  };
+
+  componentDidMount() {
+    DeviceEventEmitter.addListener(
+      EVENTS.CLOSE_DRAWER_MENU_DIALOG,
+      this.closeDialog
+    );
+  }
+
+  componentWillMount() {
+    DeviceEventEmitter.removeListener(EVENTS.CLOSE_DRAWER_MENU_DIALOG);
+  }
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
+  }
+
+  renderModalContentView = Comp => (Comp ? <Comp /> : <View />);
+
+  render() {
+    let { menuItems, navigation } = this.props;
+    return (
+      <View>
+        <ScrollView>
+          <SafeAreaView
+            style={styles.container}
+            forceInset={{ top: "always", horizontal: "never" }}
+          >
+            {menuItems.map(menuItem => (
+              <TouchableOpacity
+                onPress={this.getMenuClick(navigation, menuItem)}
+              >
+                <Text style={styles.menuLink}>{menuItem.label}</Text>
+              </TouchableOpacity>
+            ))}
+          </SafeAreaView>
+        </ScrollView>
+        <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}
+        >
+          {this.renderModalContentView(this.state.currentComponent)}
+        </Modal>
+      </View>
+    );
+  }
+}
