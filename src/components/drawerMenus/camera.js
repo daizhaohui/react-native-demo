@@ -1,5 +1,5 @@
 import React from "react";
-import { CameraRoll, ScrollView, View, Button } from "react-native";
+import { CameraRoll, ScrollView, View, Button, Image } from "react-native";
 import BackButton from "./backButton";
 
 export default class CameraView extends React.Component {
