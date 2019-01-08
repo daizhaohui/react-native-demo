@@ -14,7 +14,7 @@ import {
 } from "react-navigation";
 import DrawerMenu from "../main/drawerMenu";
 import MainTabs from "./mainTabs";
-import { RNWebView } from "../drawerMenus";
+import MenuItems from "./menuItems";
 import { EVENTS } from "../../consts";
 
 const styles = StyleSheet.create({
@@ -22,13 +22,6 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
-
-const menuItems = [
-  {
-    label: "webView",
-    component: RNWebView
-  }
-];
 
 const createModalView = InnerView => {
   return class MenuItemModal extends React.Component {
@@ -71,7 +64,7 @@ const MyDrawerNavigator = createDrawerNavigator(
   },
   {
     contentComponent: props => (
-      <DrawerMenu navigation={props.navigation} menuItems={menuItems} />
+      <DrawerMenu navigation={props.navigation} menuItems={MenuItems} />
     ),
     drawerPosition: "left",
     drawerType: "front",

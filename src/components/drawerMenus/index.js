@@ -1,3 +1,4 @@
 import RNWebView from "./webView";
+import RNAnimated from "./animated";
 
-export { RNWebView };
+export { RNWebView, RNAnimated };
