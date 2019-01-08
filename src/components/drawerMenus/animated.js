@@ -48,7 +48,7 @@ class LayoutAnimatedView extends React.Component {
               marginTop: 15
             }}
           >
-            <Text style={{ color: "#fff" }}>Press me!</Text>
+            》<Text style={{ color: "#fff" }}>Press me!</Text>
           </View>
         </TouchableOpacity>
       </View>
