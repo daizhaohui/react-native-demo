@@ -1,4 +1,4 @@
-import { RNWebView, RNAnimated } from "../drawerMenus";
+import { RNWebView, RNCamera, RNAnimated } from "../drawerMenus";
 
 export default [
   {
@@ -8,5 +8,9 @@ export default [
   {
     label: "animated",
     component: RNAnimated
+  },
+  {
+    label: "camera",
+    component: RNCamera
   }
 ];
