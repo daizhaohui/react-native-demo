@@ -40,8 +40,7 @@ const MyNavigator = createStackNavigator(
     }
   },
   {
-    initialRouteName: "Index",
-    mode: "modal"
+    initialRouteName: "Index"
   }
 );
 

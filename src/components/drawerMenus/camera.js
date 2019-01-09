@@ -1,11 +1,16 @@
 import React from "react";
 import { CameraRoll, ScrollView, View, Button, Image } from "react-native";
 import BackButton from "./backButton";
-
-export default class CameraView extends React.Component {
+import { createStackNavigator, createAppContainer } from "react-navigation";
+class CameraView extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  static navigationOptions = navigation => ({
+    title: "Camera",
+    headerLeft: <BackButton />
+  });
 
   state = {
     photos: []
@@ -26,7 +31,9 @@ export default class CameraView extends React.Component {
   render() {
     return (
       <View>
-        <BackButton />
+        <View>
+          <BackButton />
+        </View>
         <Button title="load images" onPress={this._handelButtonPress} />
         <ScrollView>
           {this.state.photos.map((p, i) => {
@@ -46,3 +53,15 @@ export default class CameraView extends React.Component {
     );
   }
 }
+const MyNavigator = createStackNavigator(
+  {
+    Index: {
+      screen: CameraView
+    }
+  },
+  {
+    initialRouteName: "Index"
+  }
+);
+
+export default createAppContainer(MyNavigator);
