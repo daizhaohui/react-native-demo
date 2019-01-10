@@ -1,3 +1,3 @@
-export default function root(state, action) {
+export default function root(state = [], action) {
   return state;
 }

@@ -76,6 +76,7 @@ export default class DrawerMenu extends React.Component {
             {menuItems.map(menuItem => (
               <TouchableOpacity
                 onPress={this.getMenuClick(navigation, menuItem)}
+                key={menuItem.label}
               >
                 <Text style={styles.menuLink}>{menuItem.label}</Text>
               </TouchableOpacity>
