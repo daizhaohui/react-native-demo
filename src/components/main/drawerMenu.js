@@ -15,7 +15,8 @@ import { EVENTS } from "../../consts";
 const styles = StyleSheet.create({
   menuLink: {
     color: "#fff",
-    marginTop: 10
+    marginTop: 10,
+    marginLeft: 10
   }
 });
 

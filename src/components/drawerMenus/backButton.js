@@ -15,6 +15,7 @@ export default class BackButton extends React.Component {
         }}
         title="Back"
         color="blue"
+        accessibilityLabel="go to back"
       />
     );
   }

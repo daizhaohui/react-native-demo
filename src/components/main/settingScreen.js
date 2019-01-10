@@ -26,6 +26,7 @@ class Settings extends React.Component {
         onPress={() => alert("This is a button!")}
         title="Info"
         color="blue"
+        accessibilityLabel="info button"
       />
     )
   };

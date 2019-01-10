@@ -1,5 +1,13 @@
 import React from "react";
-import { CameraRoll, ScrollView, View, Button, Image } from "react-native";
+import {
+  CameraRoll,
+  ScrollView,
+  View,
+  Button,
+  Image,
+  ActivityIndicator,
+  StatusBar
+} from "react-native";
 import BackButton from "./backButton";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 class CameraView extends React.Component {
@@ -13,7 +21,8 @@ class CameraView extends React.Component {
   });
 
   state = {
-    photos: []
+    photos: [],
+    animating: true
   };
   _handelButtonPress = () => {
     CameraRoll.getPhotos({
@@ -28,22 +37,32 @@ class CameraView extends React.Component {
       .catch(err => {});
   };
 
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        animating: false
+      });
+    }, 6000);
+  }
+
   render() {
     return (
       <View>
-        <View>
-          <BackButton />
-        </View>
+        <ActivityIndicator
+          size="small"
+          color="#00ff00"
+          animating={this.state.animating}
+        />
         <Button title="load images" onPress={this._handelButtonPress} />
+        <View>
+          <StatusBar barStyle="dark-content" backgroundColor="#ecf0f1" />
+        </View>
         <ScrollView>
           {this.state.photos.map((p, i) => {
             return (
               <Image
                 key={i}
-                style={{
-                  width: 300,
-                  height: 100
-                }}
+                style={{ width: 300, height: 100 }}
                 source={{ uri: p.node.image.uri }}
               />
             );
