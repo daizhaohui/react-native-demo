@@ -1,4 +1,10 @@
-import { RNWebView, RNCamera, RNAnimated, RNKeyboard } from "../drawerMenus";
+import {
+  RNWebView,
+  RNCamera,
+  RNAnimated,
+  RNKeyboard,
+  RNPanResponder
+} from "../drawerMenus";
 
 export default [
   {
@@ -16,5 +22,9 @@ export default [
   {
     label: "keyboard",
     component: RNKeyboard
+  },
+  {
+    label: "PanResponder",
+    component: RNPanResponder
   }
 ];
