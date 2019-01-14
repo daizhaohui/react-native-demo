@@ -13,6 +13,7 @@
     "react-native": "0.57.8",
     "react-native-code-push": "^5.5.1",
     "react-native-gesture-handler": "^1.0.12",
+    "react-native-maps": "^0.22.1",
     "react-native-update": "^5.1.4",
     "react-native-webview": "^2.14.3",
     "react-navigation": "^3.0.9",

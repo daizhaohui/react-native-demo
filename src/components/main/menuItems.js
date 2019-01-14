@@ -3,7 +3,8 @@ import {
   RNCamera,
   RNAnimated,
   RNKeyboard,
-  RNPanResponder
+  RNPanResponder,
+  RNMapView
 } from "../drawerMenus";
 
 export default [
@@ -26,5 +27,9 @@ export default [
   {
     label: "PanResponder",
     component: RNPanResponder
+  },
+  {
+    label: "MapView",
+    component: RNMapView
   }
 ];
