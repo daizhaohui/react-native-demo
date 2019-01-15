@@ -29,7 +29,12 @@ class RNMapView extends React.Component {
   render() {
     return (
       <View style={Styles.container}>
-        <MapView style={Styles.mapView} showsUserLocation followsUserLocation>
+        <MapView
+          style={Styles.mapView}
+          showsUserLocation
+          followsUserLocation
+          showsPointsOfInterest={false}
+        >
           <MapView.Marker
             title="Duff Brewery"
             description="Duff beer for me,Duff beef for you"

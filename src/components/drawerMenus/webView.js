@@ -2,11 +2,16 @@ import React from "react";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 import { WebView } from "react-native-webview";
 import BackButton from "./backButton";
+import { Alert } from "react-native";
 
 class RNWebView extends React.Component {
   constructor() {
     super();
   }
+
+  state = {
+    message: ""
+  };
 
   static navigationOptions = navigation => ({
     title: "WebView",
@@ -22,11 +27,17 @@ class RNWebView extends React.Component {
     );
   };
 
+  onMessage = event => {
+    var data = event.nativeEvent.data;
+    Alert.alert(data);
+  };
+
   render() {
     return (
       <WebView
-        source={{ uri: "https://infinite.red/react-native" }}
+        source={require("../../static/webview.html")}
         style={{ marginTop: 20 }}
+        onMessage={this.onMessage}
         onLoadProgress={e => console.log(e.nativeEvent.progress)}
       />
     );
